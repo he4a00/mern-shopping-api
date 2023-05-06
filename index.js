@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(
   cors({
-    origin: ["https://localhost::3000", "https://oganiyo.netlify.app"],
+    origin: "https://oganiyo.netlify.app",
   })
 );
 
