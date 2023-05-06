@@ -11,7 +11,11 @@ const orderRoutes = require("./routes/orderRoutes");
 dotenv.config();
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(
+  cors({
+    origin: ["https://localhost::3000", "https://oganiyo.netlify.app/"],
+  })
+);
 
 mongoose
   .connect(process.env.MONGO_URL)
