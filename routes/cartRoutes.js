@@ -13,6 +13,7 @@ const {
   deleteCartProduct,
   getCartProducts,
   clearCartProducts,
+  updateQuantity,
 } = require("../controllers/cartControllers");
 
 const router = express.Router();
@@ -47,5 +48,9 @@ router.put("/products/clear/:userId", clearCartProducts);
 //get all carts routes
 
 router.get("/", verifyTokenAndAdmin, getAllCarts);
+
+// edit quantity route
+
+router.put("/quantity/:userId/:productId", updateQuantity);
 
 module.exports = router;

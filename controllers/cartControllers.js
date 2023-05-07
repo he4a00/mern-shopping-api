@@ -128,6 +128,28 @@ const getAllCarts = async (req, res) => {
   }
 };
 
+// edit the quantity
+
+const updateQuantity = async (req, res) => {
+  const { quantity } = req.body;
+  const { productId } = req.params;
+  try {
+    const cart = await Cart.findOneAndUpdate(
+      { userId: req.params.userId, "products._id": productId },
+      { $set: { "products.$.quantity": quantity } },
+      { new: true }
+    );
+
+    if (!cart) {
+      return res.status(404).json({ message: "Cart not found" });
+    }
+
+    res.status(200).json(cart);
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};
+
 module.exports = {
   createCart,
   updateCart,
@@ -137,4 +159,5 @@ module.exports = {
   deleteCartProduct,
   getCartProducts,
   clearCartProducts,
+  updateQuantity,
 };
