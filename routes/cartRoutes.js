@@ -42,7 +42,7 @@ router.delete("/:userId/:productId", deleteCartProduct);
 
 // clear cart products
 
-router.delete("/products/clear/:userId", clearCartProducts);
+router.put("/products/clear/:userId", clearCartProducts);
 
 //get all carts routes
 
